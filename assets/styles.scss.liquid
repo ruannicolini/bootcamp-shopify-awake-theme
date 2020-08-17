@@ -1,13 +1,19 @@
-// Colors
+// Variables
 //----------------------------------------
 
-    $color-border: #CCCCCC;
-    $color-black: #000;
-    $color-black-focus: #444;
-    $color-white: #FFF;
-    $color-pink: #ED1E7A;
-    $color-pink-focus: #C01561;
+//colors
+$color-border: #CCCCCC;
+$color-black: #000;
+$color-black-focus: #444;
+$color-white: #FFF;
+$color-pink: #ED1E7A;
+$color-pink-focus: #C01561;
 
+// Backgrounds
+$color-body: {{ settings.color_body_bg }};
+
+// Header
+$header-mobile-hight: 56px;
 
 // Fonts
 //----------------------------------------
@@ -130,13 +136,13 @@ p {
 // -----------------------------------------------------------  
 button,
 .btn {
-    height: 48px;
+    height: 48px;   
     background: $color-black;
+    padding: 12px 20px;   
     border: 0;
-    border-radius: 0;
-    
+    border-radius: 0;    
+
     color: $color-white;
-    padding: 12px 20px;
     font-size: 14px;
     line-height: 24px;
     text-transform: uppercase;
@@ -146,5 +152,58 @@ button,
 
     &:focus {
         background: $color-black-focus;
+        border-radius: 0;
+    }
+}
+
+.btn-small {
+    height: 40px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.btn-large {
+    height: 56px;
+    padding: 16px 20px;
+} 
+
+.btn-pink:not([disabled]),
+.btn-pink {
+    background: $color-pink;
+
+    &:hover,
+    &:active,
+    &:focus{
+        background-color: $color-pink-focus;        
+    }
+} 
+
+.btn-ghost:not([disabled]),
+.btn-ghost {
+    background: transparent;
+    outline: 1px solid $color-white;
+    outline-offset: -1px;
+
+    &:hover,
+    &:active,
+    &:focus{
+        background-color: $color-black-focus;      
+        outline-offset: -4px;  
+        outline-width: 4px;
+    }
+}
+
+.btn-ghost-black:not([disabled]),
+.btn-ghost-black {
+    color: $color-black;
+    outline-color: $color-black;
+
+    &:hover,
+    &:active,
+    &:focus{
+        color: $color-black;    
+        outline-color: $color-black;
+        background-color: transparent;
+
     }
 }
