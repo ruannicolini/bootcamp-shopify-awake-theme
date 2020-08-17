@@ -8,6 +8,7 @@ $color-black-focus: #444;
 $color-white: #FFF;
 $color-pink: #ED1E7A;
 $color-pink-focus: #C01561;
+$color-gray: #CCCCCC;
 
 // Backgrounds
 $color-body: {{ settings.color_body_bg }};
@@ -203,6 +204,21 @@ button,
     &:focus{
         color: $color-black;    
         outline-color: $color-black;
+        background-color: transparent;
+
+    }
+}
+
+.btn-ghost-gray:not([disabled]),
+.btn-ghost-gray {
+    color: $color-black;
+    outline-color: $color-gray;
+
+    &:hover,
+    &:active,
+    &:focus{
+        color: $color-black;    
+        outline-color: $color-gray;
         background-color: transparent;
 
     }
