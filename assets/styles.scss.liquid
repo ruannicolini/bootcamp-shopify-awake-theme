@@ -244,11 +244,32 @@ button,
 // Minicart
 // -----------------------------------------------------------
 
+.minicart-trigger {
+
+    .badge {
+        line-height: 16px;
+        margin-right: 5px;
+
+        {% comment %} padding: 4px 5px; {% endcomment %}
+        {% comment %} min-width: 25px;
+        display: inline-block;
+        text-align: center; {% endcomment %}
+    }
+}
+
 // Header
 // -----------------------------------------------------------
 
 .page-container {
     padding-top: $header-mobile-hight;
+}
+
+.site-header__logo-image {
+
+    img{
+        height: 40px;
+    }
+
 }
 
 .site-header {
@@ -257,13 +278,14 @@ button,
     height: $header-mobile-hight;
     z-index: 999;
     background: $color-body; 
-    padding: 0 20px;
-
+    padding: 8px 20px;
 }
 
 .site-header__icon {
     padding: 0;
-
+    height: 24px;
+    margin-left: 20px;
+    width:24px;
     .icon {
         width: 40px;
     }    

@@ -82,9 +82,29 @@
 
         <span class="badge" >10</span>
         <span class="badge">Text example</span>
-        <a href="#">
+        {% comment %} <a href="#">
           <span class="badge" >10</span>
           <span>{% include 'icon-cart' %}</span>
+        </a> {% endcomment %}
+
+        <br><br>
+
+        <a href="#" class="site-header__icon site-header__cart minicart-trigger">
+          <span class="site-header__cart-count badge">
+            <span>10</span>
+            <span class="icon__fallback-text medium-up--hide">itens</span>
+          </span>
+          {% include 'icon-cart' %}
+          <span class="icon__fallback-text">Carrinho</span>          
+        </a>
+
+        <a href="#" class="site-header__icon site-header__cart minicart-trigger">
+          <span class="site-header__cart-count badge hide">
+            <span>0</span>
+            <span class="icon__fallback-text medium-up--hide">itens</span>
+          </span>
+          {% include 'icon-cart' %}
+          <span class="icon__fallback-text">Carrinho</span>          
         </a>
 
         <hr>
@@ -92,7 +112,16 @@
         <a href='#' > {{ 'teste.shopping' | t }} </a>
 
         <hr>
+        
+        <label for="input_test">Label example</label>
+        <input type="text" id="input_test" placeholder="Digite seu e-mail">
 
+        <label for="select_test">Select example</label>
+        <select id="select_test">
+          <option>Option 1</option>
+          <option>Option 2</option>
+          <option>Option 3</option>
+        </select>
 
       </div>
 
