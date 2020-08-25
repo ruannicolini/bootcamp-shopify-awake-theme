@@ -248,12 +248,11 @@ button,
 
     .badge {
         line-height: 16px;
-        margin-right: 5px;
-
-        {% comment %} padding: 4px 5px; {% endcomment %}
-        {% comment %} min-width: 25px;
+        {% comment %} padding: 4px 2px 4px 5px; {% endcomment %}
+        padding: 4px 5px;
+        min-width: 25px;
         display: inline-block;
-        text-align: center; {% endcomment %}
+        text-align: center;
     }
 }
 
@@ -282,11 +281,27 @@ button,
 }
 
 .site-header__icon {
+    
     padding: 0;
     height: 24px;
-    margin-left: 20px;
-    width:24px;
-    .icon {
-        width: 40px;
-    }    
+    width:24px; 
+    {% comment %} margin-left: 20px; {% endcomment %}
+
+    &.site-header__menu {
+        margin-left: 20px;
+    }
+
+    &.site-header__cart {
+        margin-left: 15px;
+    }
+
+}
+
+
+.site-header__logo-wrapper {
+    with:auto;
+}
+
+.site-header__logo {
+    margin: 0;
 }
