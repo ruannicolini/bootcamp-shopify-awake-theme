@@ -137,18 +137,9 @@
   {%- endif -%}
 {%- endcapture -%}
 
-<script>console.log({{ section.settings.logo | json}})</script>
-
 <footer class="site-footer" role="contentinfo" data-section-id="{{ section.id }}" data-section-type="footer-section">
   <div class="page-width">
     <div class="site-footer__content">
-
-      {% if section.settings.logo %}
-        {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
-        <a href="{{ routes.root_url }}" class="site-footer__logo" >
-          <img src="{{ section.settings.logo | img_url: '300x300' }}" alt="{{ logo_alt }}" />
-        </a>
-      {% endif %}
 
       {%- for block in section.blocks -%}
 
@@ -208,6 +199,7 @@
                   {% endform %}
                 </div>
 
+              
               {%- when 'text' -%}
                 {%- if block.settings.text != blank -%}
                   <div class="site-footer__rte
@@ -216,6 +208,17 @@
                   </div>
                 {%- endif -%}
 
+              
+              {%- when 'logo_img' -%}
+              
+              {% if block.settings.img %}
+                {% capture logo_alt %}{{ block.settings.img.alt | default: shop.name }}{% endcapture %}
+                <a href="{{ routes.root_url }}" class="site-footer__logo" >
+                  <img src="{{ block.settings.img | img_url: '300x300' }}" alt="{{ logo_alt }}" />
+                </a>
+              {% endif %}
+
+                            
               {%- when 'link_list' -%}
                 {%- assign footer_linklist = block.settings.menu -%}
                   <ul class="site-footer__linklist
@@ -232,6 +235,7 @@
                     <li class="site-footer__linklist-item">{% include 'custumer-login-link' %}</li>
                   </ul>
 
+            
             {%- endcase -%}
 
           </div>
@@ -382,30 +386,6 @@
   },
   "max_blocks": 4,
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": {
-        "da": "Logobillede",
-        "de": "Logo-Foto",
-        "en": "Logo image",
-        "es": "Logo",
-        "fi": "Logokuva",
-        "fr": "Image du logo",
-        "hi": "लोगो इमेज",
-        "it": "Immagine del logo",
-        "ja": "ロゴ画像",
-        "ko": "로고 이미지",
-        "nb": "Logobilde",
-        "nl": "Afbeelding van logo",
-        "pt-BR": "Imagem do logotipo",
-        "pt-PT": "Imagem do logótipo",
-        "sv": "Logobild",
-        "th": "รูปภาพโลโก้",
-        "zh-CN": "logo 图片",
-        "zh-TW": "標誌圖片"
-      }
-    },
     {
       "type": "header",
       "content": {
@@ -958,6 +938,31 @@
             "th": "จดหมายข่าว",
             "zh-CN": "新闻通讯",
             "zh-TW": "電子報"
+          }
+        }
+      ]
+    },
+    {
+      "type": "logo_img",
+      "name": {
+        "en": "Logo",
+        "pt-BR": "Logo"
+      },
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": {
+            "en": "title",
+            "pt-BR": "Título"
+          }
+        },
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": {
+            "en": "Image",
+            "pt-BR": "Imagem"
           }
         }
       ]
