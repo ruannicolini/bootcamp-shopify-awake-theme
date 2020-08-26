@@ -1,0 +1,69 @@
+<p>{{ section.settings.title }}</p>
+
+{% for block in section.blocks %}
+  {{ block.settings.content }}   
+{% endfor %}
+
+{% if section.settings.button_url %}
+  <a href={{ section.settings.button_url}} class="btn">{{ section.settings.button_title }}</a>    
+{% endif %}
+
+{% schema %}
+{
+  "name": {
+    "en": "Call to Action",
+    "pt-BR": "Call to Action"
+  },
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title",
+      "default": "We are back"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "id": "button_title",
+      "type": "text",
+      "label": "Button Title"
+    },
+    {
+      "type": "header",
+      "content": "Button Url"
+    },
+    {
+      "id": "button_url",
+      "type": "url",
+      "label": "Button Url"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content_block",
+      "name": {
+        "en": "Content Block",
+        "pt-BR": "Bloco Conteúdo"
+      },
+      "settings": [
+        {
+          "id": "content",
+          "type": "richtext",         
+          "label": {
+            "en": "Content",
+            "pt-BR": "Conteúdo"
+          }
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Call to Action",
+      "category": "CTA"
+    }  
+  ]
+}
+{% endschema %}
