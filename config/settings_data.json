@@ -54,7 +54,7 @@
         "settings": {
           "align_logo": "left",
           "logo": "shopify:\/\/shop_images\/awake_1.png",
-          "logo_max_width": 135,
+          "logo_max_width": 114,
           "main_linklist": "main-menu",
           "message": false,
           "home_page_only": true,
@@ -238,30 +238,39 @@
       "footer": {
         "type": "footer",
         "blocks": {
+          "1598472225503": {
+            "type": "logo_img",
+            "settings": {
+              "title": "",
+              "img": "shopify:\/\/shop_images\/awake.png"
+            }
+          },
+          "1598397384193": {
+            "type": "text",
+            "settings": {
+              "title": "Fale sobre o seu negócio",
+              "text": "<p><span style=\"text-decoration: none;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<\/span>&nbsp;<\/p>"
+            }
+          },
           "footer-0": {
             "type": "link_list",
             "settings": {
               "title": "Links rápidos",
               "menu": "footer"
             }
-          },
-          "footer-1": {
-            "type": "newsletter",
-            "settings": {
-              "title": "Newsletter"
-            }
           }
         },
         "block_order": [
-          "footer-0",
-          "footer-1"
+          "1598472225503",
+          "1598397384193",
+          "footer-0"
         ],
         "settings": {
-          "show_payment_icons": true,
+          "show_payment_icons": false,
           "color_footer_bg": "#000000",
           "color_footer_text": "#fefefe",
-          "show_locale_selector": true,
-          "show_currency_selector": true
+          "show_locale_selector": false,
+          "show_currency_selector": false
         }
       },
       "cart-template": {
@@ -298,6 +307,25 @@
           "sort_enable": true,
           "tags_enable": true
         }
+      },
+      "1598484423493": {
+        "type": "call-to-action",
+        "blocks": {
+          "1598484713191": {
+            "type": "content_block",
+            "settings": {
+              "content": "<p>teste vdgfdg&nbsp; hghgh&nbsp; gbhghghg.<\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "1598484713191"
+        ],
+        "settings": {
+          "title": "We are back",
+          "button_title": "Shop New Collection",
+          "button_url": "shopify:\/\/collections"
+        }
       }
     },
     "content_for_index": [
@@ -307,7 +335,8 @@
       "collection",
       "hero-2",
       "quotes",
-      "image-bar"
+      "image-bar",
+      "1598484423493"
     ]
   },
   "presets": {
