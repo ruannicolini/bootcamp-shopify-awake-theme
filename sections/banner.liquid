@@ -1,0 +1,328 @@
+{%- if section.settings.image -%}
+
+    {%- if section.blocks.size > 0 -%}
+      {% assign block_type = section.blocks[0].type %}
+    {%- endif -%}
+
+    <div style="background-image: url('{{ section.settings.image | img_url: '300x300' }});"
+      class="banner banner--{{ section.settings.banner_size }}
+        banner--{%- if block_type == 'content_block_banner_2' -%} content_top {%- else -%} content_bottom {% endif %}  
+        banner--{%- if block_type == 'content_block_banner_4' -%} content_right {%- else -%} content_center {%- endif -%}"
+    >
+  
+    {%- if section.blocks.size > 0 -%}
+      {% for block in section.blocks %} 
+        <div class="banner--{{block.type}}"> 
+        {%- case block.type -%}
+          {%- when 'content_block_banner_1' -%}
+            {% include 'banner1', info: block.settings %}            
+          {%- when 'content_block_banner_2' -%}
+            {% include 'banner2', info: block.settings %}            
+          {%- when 'content_block_banner_3' -%}   
+            {% include 'banner3', info: block.settings %}     
+          {%- when 'content_block_banner_4' -%}   
+            {% include 'banner4', info: block.settings %}      
+        {%- endcase -%}
+        </div>
+      {% endfor %}
+    {%- endif -%}
+    </div>
+   
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Banner",
+  "max_blocks": 1,
+  "settings": [
+    {
+      "id": "image",  
+      "type": "image_picker",  
+      "label": {
+        "en": "Image",
+        "pt-BR": "Imagem"
+      }
+    },  
+    {      
+      "id": "banner_size",
+      "type": "select",
+      "label": {
+        "en": "Section height",
+        "pt-BR": "Altura da seção"
+      },
+      "default": "medium",
+      "options": [
+        {
+          "label": {
+            "en": "Small",
+            "pt-BR": "Pequeno"
+          },
+          "value": "small"
+        },
+        {
+          "label": {
+            "en": "Medium",
+            "pt-BR": "Médio"
+          },
+          "value": "medium"
+        },
+        {
+          "label": {
+            "en": "Large",
+            "pt-BR": "Grande"
+          },
+          "value": "large"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content_block_banner_1",
+      "name": "Banner 1",
+      "settings": [
+        {
+          "type": "header",
+          "content": {
+            "en": "Title",
+            "pt-BR": "Título"
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": {
+            "en": "Text",
+            "pt-BR": "Texto"
+          },
+          "default": "Find your best style"
+        },
+        {  
+          "id": "color_title",
+          "type": "color",
+          "label": {
+            "en": "Color",
+            "pt-BR": "Cor"
+          },
+          "default": "#f6f6f6"
+        },
+        {
+          "type": "header",
+          "content": {
+            "en": "Button",
+            "pt-BR": "Botão"
+          }
+        },
+        {
+          "id": "button_title",
+          "type": "text",
+          "label": {
+            "en": "Button Title",
+            "pt-BR": "Título do Botão"
+          }
+        },
+        {
+          "id": "button_url",
+          "type": "url",
+          "label": {
+            "en": "URL",
+            "pt-BR": "URL"
+          }
+        } 
+      ]
+    },
+    {
+      "type": "content_block_banner_2",
+      "name": "Banner 2",
+      "settings": [
+        {
+          "type": "header",
+          "content": {
+            "en": "Title",
+            "pt-BR": "Título"
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": {
+            "en": "Text",
+            "pt-BR": "Texto"
+          },
+          "default": "We're back"
+        },
+        {  
+          "id": "color_title",
+          "type": "color",
+          "label": {
+            "en": "Color",
+            "pt-BR": "Cor"
+          },
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": {
+            "en": "Button",
+            "pt-BR": "Botão"
+          }
+        },
+        {
+          "id": "button_title",
+          "type": "text",
+          "label": {
+            "en": "Button Title",
+            "pt-BR": "Título do Botão"
+          }
+        },
+        {
+          "id": "button_url",
+          "type": "url",
+          "label": {
+            "en": "URL",
+            "pt-BR": "URL"
+          }
+        } 
+      ]
+    },
+    {
+      "type": "content_block_banner_3",
+      "name": "Banner 3",
+      "settings": [
+        {
+          "type": "header",
+          "content": {
+            "en": "Title",
+            "pt-BR": "Título"
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": {
+            "en": "Text",
+            "pt-BR": "Texto"
+          },
+          "default": "Best sellers"
+        },
+        {  
+          "id": "color_title",
+          "type": "color",
+          "label": {
+            "en": "Color",
+            "pt-BR": "Cor"
+          },
+          "default": "#f6f6f6"
+        },
+        {
+          "type": "header",
+          "content": {
+            "en": "Button",
+            "pt-BR": "Botão"
+          }
+        },
+        {
+          "id": "button_title",
+          "type": "text",
+          "label": {
+            "en": "Button Title",
+            "pt-BR": "Título do Botão"
+          }
+        },
+        {
+          "id": "button_url",
+          "type": "url",
+          "label": {
+            "en": "URL",
+            "pt-BR": "URL"
+          }
+        } 
+      ]
+    },
+    {
+      "type": "content_block_banner_4",
+      "name": "Banner 4",
+      "settings": [
+        {
+          "type": "header",
+          "content": {
+            "en": "Title",
+            "pt-BR": "Título"
+          }
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": {
+            "en": "Text",
+            "pt-BR": "Texto"
+          },
+          "default": "15% off sale"
+        },
+        {  
+          "id": "color_title",
+          "type": "color",
+          "label": {
+            "en": "Color",
+            "pt-BR": "Cor Título"
+          },
+          "default": "#f6f6f6"
+        },
+        {
+          "type": "header",
+          "content": {
+            "en": "Content",
+            "pt-BR": "Conteúdo"
+          }
+        },
+        {
+          "id": "content",
+          "type": "richtext",         
+          "label": {
+            "en": "Text",
+            "pt-BR": "Texto"
+          }
+        },
+        {  
+          "id": "color_content",
+          "type": "color",
+          "label": {
+            "en": "Color",
+            "pt-BR": "Cor Texto"
+          },
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "header",
+          "content": {
+            "en": "Button",
+            "pt-BR": "Botão"
+          }
+        },
+        {
+          "id": "button_title",
+          "type": "text",
+          "label": {
+            "en": "Button Title",
+            "pt-BR": "Título do Botão"
+          }
+        },
+        {
+          "id": "button_url",
+          "type": "url",
+          "label": {
+            "en": "URL",
+            "pt-BR": "URL"
+          }
+        } 
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner",
+      "category": "Imagem"
+    }  
+  ]
+}
+{% endschema %}

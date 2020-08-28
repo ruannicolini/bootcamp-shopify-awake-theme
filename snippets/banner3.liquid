@@ -1,0 +1,10 @@
+
+{%- if info.title != blank -%}
+    <h1 class="heading-uppercase" style="color: {{info.color_title}}; text-transform: uppercase; letter-spacing: 0.1em;">
+        {{ info.title | escape }}
+    </h1>
+{%- endif -%}
+
+{% if info.button_url %}
+    <a href={{ info.button_url}} class="btn">{{ info.button_title }}</a>    
+{% endif %}

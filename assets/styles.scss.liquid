@@ -81,8 +81,10 @@ h4, h5, h6 {
 }
 
 h1.heading-uppercase {
-    font-size: 24px;
-    line-height: 32px;
+    {% comment %} font-size: 24px;
+    line-height: 32px; {% endcomment %}
+    font-size: 32px;
+    line-height: 40px;
 }
 
 h2.heading-uppercase {
@@ -297,7 +299,6 @@ button,
 
 }
 
-
 .site-header__logo-wrapper {
     with:auto;
 }
@@ -305,3 +306,63 @@ button,
 .site-header__logo {
     margin: 0;
 }
+
+{% comment %} //////////////////////// {% endcomment %}
+
+.banner {
+
+    width: 100%;
+    display: flex;
+
+    background: {
+        size: cover;
+        repeat: no-repeat;
+        position: 50% 50%;     
+    }  
+
+    &.banner--content_bottom {       
+        align-items: flex-end;        
+    }
+
+    &.banner--content_top {      
+        align-items: flex-start; 
+    }
+
+    &.banner--content_center {          
+        justify-content: center;     
+    }
+
+    &.banner--content_right {       
+        justify-content: flex-end;
+    }
+}
+
+.banner--small {
+  height: 424px;
+}
+
+.banner--medium {
+  height: 440px;
+}
+
+.banner--large {
+  height: 496px;
+}
+
+.banner--content_block_banner_1,
+.banner--content_block_banner_3 {         
+    text-align: center;
+    margin: 56px 77px;
+}
+
+.banner--content_block_banner_2{  
+    text-align: center;  
+    margin-top: 56px;   
+}
+
+.banner--content_block_banner_4{         
+    text-align: right;
+    margin: 56px 20px;
+    width: 85%
+}
+
