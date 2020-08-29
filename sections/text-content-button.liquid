@@ -1,0 +1,61 @@
+<div class="sec-content-text" >
+  {% if section.settings.title %}
+    <h1>{{ section.settings.title }}</h1> 
+  {% endif %}
+
+  {% if section.settings.content %}
+      <p>{{ section.settings.content }}</p>
+  {% endif %}
+
+  {% if section.settings.button_url %}
+    <a href={{ section.settings.button_url}} class="btn">{{ section.settings.button_title }}</a>    
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": {
+    "en": "Content text",
+    "pt-BR": "Conteudo de texto"
+  },
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title",
+      "default": "Designed for fashion."
+    },
+    {
+      "id": "content",
+      "type": "richtext",         
+      "label": {
+        "en": "Text",
+        "pt-BR": "Texto"
+      }
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "id": "button_title",
+      "type": "text",
+      "label": "Button Title"
+    },
+    {
+      "id": "button_url",
+      "type": "url",
+      "label": "URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "en": "Content text",
+        "pt-BR": "Conteudo de texto"
+      },
+      "category": "Texto"
+    }  
+  ]
+}
+{% endschema %}
