@@ -1,1 +1,4 @@
-<img class="icon icon-youtube" src="{{ 'icon-youtube.svg' | asset_url }}" alt="Arrow" />
+{%- capture img_name -%}
+    icon-youtube{% if type %}-{{ type }}{% endif %}.svg
+{%- endcapture -%}
+<img class="icon icon-youtube" src="{{ img_name | asset_url }}" alt="Arrow" />
