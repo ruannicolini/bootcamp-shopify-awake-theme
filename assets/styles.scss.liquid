@@ -407,12 +407,14 @@ button,
 
     width: 100%;
     display: flex;
+    position: relative;
 
-    background: {
-        size: cover;
-        repeat: no-repeat;
-        position: 50% 50%;     
-    }  
+    align-content: center;
+    justify-content: center;
+
+    img {
+        width: 100%;
+    }
 
     &.banner--content_bottom {       
         align-items: flex-end;        
@@ -443,21 +445,32 @@ button,
   height: 496px;
 }
 
+.banner--content_block{
+    position: absolute;  
+}
+
 .banner--content_block_banner_1,
-.banner--content_block_banner_3 {         
+.banner--content_block_banner_3 {   
+    @extend .banner--content_block;   
     text-align: center;
     margin: 56px 77px;
 }
 
 .banner--content_block_banner_2{  
+    @extend .banner--content_block; 
     text-align: center;  
     margin-top: 56px;   
 }
 
-.banner--content_block_banner_4{         
+.banner--content_block_banner_4{  
+    @extend .banner--content_block;        
     text-align: right;
     margin: 56px 20px;
-    width: 85%
+    width: 85%;
+
+    p {
+        color: #fff;
+    }
 }
 
 .sec-content-text{
@@ -470,5 +483,6 @@ button,
     a {
       margin-top: 8px;    
     }
+
 }
 

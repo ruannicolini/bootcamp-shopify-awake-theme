@@ -4,31 +4,32 @@
       {% assign block_type = section.blocks[0].type %}
     {%- endif -%}
 
-    <div style="background-image: url('{{ section.settings.image | img_url: '300x300' }});"
-      class="banner banner--{{ section.settings.banner_size }}
+    <div class="banner banner--{{ section.settings.banner_size }}
         banner--{%- if block_type == 'content_block_banner_2' -%} content_top {%- else -%} content_bottom {% endif %}  
         banner--{%- if block_type == 'content_block_banner_4' -%} content_right {%- else -%} content_center {%- endif -%}"
     >
-  
-    {%- if section.blocks.size > 0 -%}
-      {% for block in section.blocks %} 
-        <div class="banner--{{block.type}}"> 
-        {%- case block.type -%}
-          {%- when 'content_block_banner_1' -%}
-            {% include 'banner1', info: block.settings %}            
-          {%- when 'content_block_banner_2' -%}
-            {% include 'banner2', info: block.settings %}            
-          {%- when 'content_block_banner_3' -%}   
-            {% include 'banner3', info: block.settings %}     
-          {%- when 'content_block_banner_4' -%}   
-            {% include 'banner4', info: block.settings %}      
-        {%- endcase -%}
+
+      <img src="{{section.settings.image | img_url: '300x300'}}" />
+
+      {%- if block_type != blank -%}
+        <div class="banner--{{block_type}}">
+          {%- case block_type -%}
+            {%- when 'content_block_banner_1' -%}
+              {% include 'banner1', info: section.blocks[0].settings %}            
+            {%- when 'content_block_banner_2' -%}
+              {% include 'banner2', info: section.blocks[0].settings %}            
+            {%- when 'content_block_banner_3' -%}   
+              {% include 'banner3', info: section.blocks[0].settings %}     
+            {%- when 'content_block_banner_4' -%}   
+              {% include 'banner4', info: section.blocks[0].settings %}      
+          {%- endcase -%}
         </div>
-      {% endfor %}
-    {%- endif -%}
-    </div>
+      {%- endif -%}
+
+    </div> 
    
 {%- endif -%}
+
 
 {% schema %}
 {
