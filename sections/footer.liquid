@@ -225,7 +225,9 @@
 
                       <li class="site-footer__linklist-item">
 
-                        <a href="{{ link.url }}" {% if link.current %} aria-current="page"{% endif %} >
+                        <a href="{{ link.url }}" {% if link.current %} aria-current="page"{% endif %} 
+                          class="{% if link.links != blank %}accordion{% endif %}"
+                        >
                           {{- link.title | escape -}}
                         </a>
 
