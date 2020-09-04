@@ -2,7 +2,7 @@
     <span class="qty-input__icon">
         {% include 'icon-minus' %}
     </span>
-    <input class="qty-input__input" type="number" value="{{ info_qtd }}">                      
+    <input class="qty-input__input" type="number" {% if info_qtd != blank %}value="{{ info_qtd }}"{% endif %} >                      
     <span class="qty-input__icon"> 
         {% include 'icon-plus' %}
     </span>
