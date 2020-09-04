@@ -472,7 +472,7 @@ $width-site: 1200px;
 $gutter-site: 55px;
 $gutter-site-mobile: 22px;
 $section-spacing: 55px;
-$section-spacing-small: 35px;
+$section-spacing-small: 32px;
 $border-radius: 2px;
 $icon-size: 20px;
 $connected-submit-size: $icon-size * 2.5;
@@ -4171,7 +4171,6 @@ $color-blankstate-background: rgba($color-body-text, 0.1);
 }
 
 .cart-header__title {
-  margin-bottom: 0.5rem;
 
   @include media-query($medium-up) {
     margin-bottom: 1rem;
@@ -4188,9 +4187,6 @@ $color-blankstate-background: rgba($color-body-text, 0.1);
   }
 
   td {
-    padding-top: $gutter-site-mobile;
-    padding-bottom: $gutter-site-mobile;
-
     @include media-query($medium-up) {
       padding-left: $gutter-site-mobile;
       padding-right: $gutter-site-mobile;
@@ -4249,8 +4245,6 @@ $color-blankstate-background: rgba($color-body-text, 0.1);
 }
 
 .cart__image-wrapper {
-  padding-right: 1.5rem;
-  flex: 5rem 0 0;
 
   @include media-query($medium-up) {
     padding-right: 2.5rem;

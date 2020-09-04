@@ -1,25 +1,33 @@
-<div class="site-shopping-cart page-width" data-section-id="{{ section.id }}" data-section-type="cart-template" data-ajax-enabled="{{ section.settings.cart_ajax_enable }}">
+<div class="page-width" data-section-id="{{ section.id }}" data-section-type="cart-template" data-ajax-enabled="{{ section.settings.cart_ajax_enable }}">
 
   <div {% if cart.item_count == 0 %}class="hide" {% endif %}data-cart-wrapper>
     <div class="cart-header">
-      <h1 class="cart-header__title heading-uppercase">{{ 'cart.general.title' | t }}</h1>
+      <h1 class="cart-header__title">{{ 'cart.general.title' | t }}</h1>
+      <a href="{{ routes.all_products_collection_url }}" class="text-link text-link--accent">
+        {{ 'cart.general.continue_shopping' | t }}
+      </a>
     </div>
 
     <form action="{{ routes.cart_url }}" method="post" novalidate class="cart">
       <table>
+        <thead class="cart__row cart__row--heading">
+          <th scope="col">{{ 'cart.label.product' | t }}</th>
+          <th class="text-right" scope="col">{{ 'cart.label.price' | t }}</th>
+          <th class="text-right small--hide" scope="col">{{ 'cart.label.quantity' | t }}</th>
+          <th class="text-right small--hide" scope="col">{{ 'cart.label.total' | t }}</th>
+        </thead>
         <tbody data-cart-line-items>
           {%- for item in cart.items -%}
             <tr class="cart__row" data-cart-item data-cart-item-key="{{ item.key }}" data-cart-item-url="{{ item.url }}" data-cart-item-title="{{ item.title }}" data-cart-item-index="{{ forloop.index }}" data-cart-item-quantity="{{ item.quantity }}">
-              
               <td class="cart__meta small--text-left" data-cart-table-cell>
                 <div class="cart__product-information">
                   <div class="cart__image-wrapper">
                     <img class="cart__image{% if item.image == null %} hide{% endif %}" src="{{ item | img_url: 'x190' }}" alt="{{ item.image.alt | escape }}" data-cart-item-image>
                   </div>
-                  <div class="cart__info-item">
+                  <div>
                     <div class="list-view-item__title">
                       <a href="{{ item.url }}" class="cart__product-title" data-cart-item-title>
-                        <h4>{{ item.product.title }}</h4>            
+                        {{ item.product.title }}
                       </a>
                     </div>
 
@@ -28,14 +36,6 @@
                       {%- assign variant_options = item.options_with_values -%}
                     {%- endif -%}
                     {%- assign property_size = item.properties | size -%}
-
-                    <div>
-                      {%- for option in variant_options -%}
-                        {{ option.value }} {% unless forloop.last == true %} / {% endunless %}
-                      {%- endfor -%}
-                    </div>
-
-                    {% include 'input-qty', info_qtd: item.quantity %}
 
                     <ul class="product-details{% if item.product.has_only_default_variant and property_size == 0 %} hide{% endif %}" data-cart-item-details aria-label="{{ 'cart.label.product_details' | t }}">
                       {%- for option in variant_options -%}
@@ -59,7 +59,6 @@
 
                       {%- for p in properties -%}
                         {%- unless p.last == blank -%}
-                          
                           <li class="product-details__item product-details__item--property{%if property_size == 0%} hide{% endif %}" data-cart-item-property>
                             <span class="product-details__item-label" data-cart-item-property-name>{{ p.first }}: </span>
 
@@ -74,7 +73,6 @@
                               {%- endif -%}
                             </span>
                           </li>
-
                         {%- endunless -%}
                       {%- endfor -%}
                     </ul>
@@ -82,12 +80,10 @@
                     <p class="cart__remove">
                       <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove>{{ 'cart.general.remove' | t }}</a>
                     </p>
-
                   </div>
                 </div>
               </td>
-              
-              {% comment %} <td class="cart__price text-right">
+              <td class="cart__price text-right">
 
                 {%- assign hasDiscount = false -%}
                 {%- if item.original_price != item.final_price -%}
@@ -181,8 +177,7 @@
                   {% include 'icon-error' %}
                   <span class="cart__qty-error-message" data-cart-quantity-error-message></span>
                 </div>
-              </td> {% endcomment %}
-              
+              </td>
               <td class="cart__quantity-td text-right small--hide">
                 <div class="cart__qty">
                   <label for="updates_large_{{ item.key }}" class="cart__qty-label" data-quantity-label-desktop>{{ 'cart.label.quantity' | t }}</label>
@@ -196,7 +191,6 @@
                   <span class="cart__qty-error-message" data-cart-quantity-error-message></span>
                 </div>
               </td>
-              
               <td class="cart__final-price text-right small--hide" data-cart-item-line-price>
                 {%- comment -%}
                   Markup template for discount item
