@@ -91,10 +91,6 @@
 
         <span class="badge" >10</span>
         <span class="badge">Text example</span>
-        {% comment %} <a href="#">
-          <span class="badge" >10</span>
-          <span>{% include 'icon-cart' %}</span>
-        </a> {% endcomment %}
 
         <br><br>
 
@@ -136,6 +132,10 @@
 
         <hr>
 
+        {% include 'input-qty', info_qtd: item.quantity %}
+
+        <hr>
+        
       </div>
 
     </div>
