@@ -2,7 +2,17 @@
     <span class="qty-input__icon">
         {% include 'icon-minus' %}
     </span>
-    <input class="qty-input__input" type="number" {% if info_qtd != blank %}value="{{ info_qtd }}"{% endif %} >                      
+    
+    {% comment %} 
+    <input class="qty-input__input" type="number" {% if info_qtd != blank %}value="{{ info_qtd }}"{% endif %} >  
+    {% endcomment %}
+
+    <input id="updates_{{ item.key }}" class=" qty-input__input" type="number" 
+        {% if info_qtd != blank %} value="{{ info_qtd }}"{% endif %} 
+        min="0" pattern="[0-9]*"
+         data-quantity-input data-quantity-item="{{ forloop.index }}" data-quantity-input-mobile
+    >
+
     <span class="qty-input__icon"> 
         {% include 'icon-plus' %}
     </span>

@@ -497,18 +497,16 @@ button,
 
 }
 
-{% comment %} ////////////////////////// {% endcomment %}
-
 // Shopping Cart
 // -----------------------------------------------------------
 
 .cart {
-    background: red;
+    {% comment %} background: red; {% endcomment %}
 }
 
 .cart-header {
+    {% comment %} background: green; {% endcomment %}
     margin-top: 0;
-    background: green;
     margin-bottom: 24px;
 }
 
@@ -520,11 +518,13 @@ button,
 }
 
 .cart__row {
-    margin: 0;
+    display: block;
+    margin-bottom: 16px;
 
     td {
-        padding: 0;
-    }
+        padding-top: 0;
+        padding-bottom: 15px;
+    }   
 }
 
 .cart__image-wrapper {
@@ -539,8 +539,8 @@ button,
 }
 
 .cart__info-item {
-    margin-left: 15px;
-    background: yellow;
+    {% comment %} background: yellow; {% endcomment %}
+    margin-left: 15px;    
 
     .qty-input {
         margin-top: 24px;

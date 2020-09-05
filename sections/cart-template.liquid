@@ -10,12 +10,14 @@
         <tbody data-cart-line-items>
           {%- for item in cart.items -%}
             <tr class="cart__row" data-cart-item data-cart-item-key="{{ item.key }}" data-cart-item-url="{{ item.url }}" data-cart-item-title="{{ item.title }}" data-cart-item-index="{{ forloop.index }}" data-cart-item-quantity="{{ item.quantity }}">
-              
-              <td class="cart__meta small--text-left" data-cart-table-cell>
+
+              <td class="cart__meta small--text-left" data-cart-table-cell>           
                 <div class="cart__product-information">
+
                   <div class="cart__image-wrapper">
                     <img class="cart__image{% if item.image == null %} hide{% endif %}" src="{{ item | img_url: 'x190' }}" alt="{{ item.image.alt | escape }}" data-cart-item-image>
                   </div>
+
                   <div class="cart__info-item">
                     <div class="list-view-item__title">
                       <a href="{{ item.url }}" class="cart__product-title" data-cart-item-title>
@@ -35,9 +37,9 @@
                       {%- endfor -%}
                     </div>
 
-                    {% include 'input-qty', info_qtd: item.quantity %}
-
-                    <ul class="product-details{% if item.product.has_only_default_variant and property_size == 0 %} hide{% endif %}" data-cart-item-details aria-label="{{ 'cart.label.product_details' | t }}">
+                    {% include 'input-qty', info_qtd: item.quantity, item: item  %}
+                    
+                    {% comment %} <ul class="product-details{% if item.product.has_only_default_variant and property_size == 0 %} hide{% endif %}" data-cart-item-details aria-label="{{ 'cart.label.product_details' | t }}">
                       {%- for option in variant_options -%}
                         <li class="product-details__item product-details__item--variant-option{% if item.product.has_only_default_variant %} hide{% endif %}" data-cart-item-option>{{ option.name }}: {{ option.value }}</li>
                       {%- endfor -%}
@@ -77,17 +79,82 @@
 
                         {%- endunless -%}
                       {%- endfor -%}
-                    </ul>
 
-                    <p class="cart__remove">
-                      <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove>{{ 'cart.general.remove' | t }}</a>
-                    </p>
+                    </ul> {% endcomment %}
 
                   </div>
                 </div>
               </td>
-              
-              {% comment %} <td class="cart__price text-right">
+
+              {% comment %} <td class="text-right " data-cart-item-line-price>
+
+                <span class="qty-input__icon">
+                    {% include 'icon-close' %}
+                </span>
+
+                <div class="cart__final-price">
+                  <dl {% unless item.original_line_price != item.final_line_price %}class="hide" {% endunless %}data-cart-item-discounted-price-group>
+                    <dt>
+                      <span class="visually-hidden">{{ 'cart.label.regular_total' | t }}</span>
+                    </dt>
+                    <dd>
+                      <s data-cart-item-original-price>{{ item.original_line_price | money }}</s>
+                    </dd>
+                    <dt>
+                      <span class="visually-hidden">{{ 'cart.label.discounted_total' | t }}</span>
+                    </dt>
+                    <dd>
+                      <span class="order-discount" data-cart-item-final-price>{{ item.final_line_price | money }}</span>
+                    </dd>
+                  </dl >
+
+                  <div {% if item.original_line_price != item.final_line_price %}class="hide" {% endif %}data-cart-item-regular-price-group>
+                    <span data-cart-item-regular-price>{{ item.original_line_price | money }}</span>
+                  </div>
+                </div>
+                
+              </td>  {% endcomment %}
+
+
+              <td class="cart__final-price text-right" data-cart-item-line-price>
+
+                <div>
+                  <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
+                    {% include 'icon-close' %}
+                  </a>
+                    
+                  <dl {% unless item.original_line_price != item.final_line_price %}class="hide" {% endunless %}data-cart-item-discounted-price-group>
+                    <dt>
+                      <span class="visually-hidden">{{ 'cart.label.regular_total' | t }}</span>
+                    </dt>
+                    <dd>
+                      <s data-cart-item-original-price>{{ item.original_line_price | money }}</s>
+                    </dd>
+                    <dt>
+                      <span class="visually-hidden">{{ 'cart.label.discounted_total' | t }}</span>
+                    </dt>
+                    <dd>
+                      <span class="order-discount" data-cart-item-final-price>{{ item.final_line_price | money }}</span>
+                    </dd>
+                  </dl >
+
+                  <div {% if item.original_line_price != item.final_line_price %}class="hide" {% endif %}data-cart-item-regular-price-group>
+                    <span data-cart-item-regular-price>{{ item.original_line_price | money }}</span>
+                  </div>
+                </div>
+
+                
+                
+              </td> 
+
+
+
+
+
+              <!-- ////////////////////////////////////////////////// -->
+
+              {% comment %} 
+              <td class="cart__price text-right">
 
                 {%- assign hasDiscount = false -%}
                 {%- if item.original_price != item.final_price -%}
@@ -168,6 +235,8 @@
                   {%- endfor -%}
                 </ul>
 
+                
+
                 <div class="cart__qty medium-up--hide">
                   <label for="updates_{{ item.key }}" class="cart__qty-label" aria-label="{{ 'cart.label.quantity' | t }}" data-quantity-label-mobile>
                     {{ 'cart.label.qty' | t }}
@@ -176,12 +245,13 @@
                     value="{{ item.quantity }}" min="0" pattern="[0-9]*"
                     data-quantity-input data-quantity-item="{{ forloop.index }}" data-quantity-input-mobile>
                 </div>
+
                 <div class="cart__qty-error-message-wrapper cart__qty-error-message-wrapper--mobile hide" role="alert" data-cart-quantity-error-message-wrapper>
                   <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
                   {% include 'icon-error' %}
                   <span class="cart__qty-error-message" data-cart-quantity-error-message></span>
                 </div>
-              </td> {% endcomment %}
+              </td>                       
               
               <td class="cart__quantity-td text-right small--hide">
                 <div class="cart__qty">
@@ -222,7 +292,16 @@
                 <div {% if item.original_line_price != item.final_line_price %}class="hide" {% endif %}data-cart-item-regular-price-group>
                   <span data-cart-item-regular-price>{{ item.original_line_price | money }}</span>
                 </div>
-              </td>
+              </td> 
+              
+              {% endcomment %}
+
+              <!-- ////////////////////////////////////////////////// -->
+
+
+
+
+
             </tr>
           {%- endfor -%}
         </tbody>
