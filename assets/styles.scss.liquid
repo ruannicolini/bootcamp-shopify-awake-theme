@@ -500,8 +500,11 @@ button,
 // Shopping Cart
 // -----------------------------------------------------------
 
-.cart {
-    {% comment %} background: red; {% endcomment %}
+.site-shopping-cart{ 
+    &.page-width{
+        padding-left: 20px; 
+        padding-right: 20px;    
+    }
 }
 
 .cart-header {
@@ -510,10 +513,14 @@ button,
     margin-bottom: 24px;
 }
 
-.site-shopping-cart{ 
-    &.page-width{
-        padding-left: 20px; 
-        padding-right: 20px;    
+.cart {
+    {% comment %} background: red; {% endcomment %}
+    table {
+        margin: 0;
+    }
+
+    tr:last-child {
+        margin-bottom: 0;
     }
 }
 
@@ -552,6 +559,30 @@ button,
     h4 {
         margin: 0;
     }    
+}
+
+.cart__footer {
+    margin-top: 24px;
+}
+
+.cart-subtotal {
+    {% comment %} background: green; {% endcomment %}
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart__shipping {
+    margin-top: 24px;
+}
+
+.cart__buttons-container {
+    margin-top: 8px;
+    margin-bottom: 40px;
+}
+
+.cart__submit-controls {
+    display: flex;
+    flex-direction: column;
 }
 
 // Input qty

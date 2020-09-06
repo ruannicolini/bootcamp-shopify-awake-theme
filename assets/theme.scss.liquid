@@ -4382,34 +4382,6 @@ $color-blankstate-background: rgba($color-body-text, 0.1);
   }
 }
 
-.cart__footer {
-  padding-top: $section-spacing-small / 2;
-}
-
-.cart__buttons-container {
-  display: flex;
-  flex-direction: column;
-  max-width: 20rem;
-  margin: 0 auto;
-
-  @include media-query ($medium-up) {
-    display: block;
-    max-width: none;
-  }
-}
-
-.cart__submit-controls {
-  @include display-flexbox();
-  @include flex-direction(column);
-
-  @include media-query($medium-up) {
-    @include flex-direction(row);
-    @include flex-wrap(wrap);
-    @include align-items(flex-start);
-    @include justify-content(flex-end);
-  }
-}
-
 .cart__submit {
   margin-bottom: 0;
   min-height: 44px;
@@ -4429,12 +4401,6 @@ $color-blankstate-background: rgba($color-body-text, 0.1);
       margin-left: 10px;
     }
   }
-}
-
-.cart__shipping {
-  font-size: em($font-size-base - 2);
-  padding: 10px 0 20px;
-  margin-bottom: 25px;
 }
 
 .cart-note__label,

@@ -139,11 +139,10 @@
                   </dl >
 
                   <div {% if item.original_line_price != item.final_line_price %}class="hide" {% endif %}data-cart-item-regular-price-group>
-                    <span data-cart-item-regular-price>{{ item.original_line_price | money }}</span>
+                    <span data-cart-item-regular-price>{{ item.original_line_price | money_without_trailing_zeros }}</span>
                   </div>
                 </div>
-
-                
+            
                 
               </td> 
 
@@ -151,7 +150,7 @@
 
 
 
-              <!-- ////////////////////////////////////////////////// -->
+              <!-- ////////////////////////////////////////////////// 
 
               {% comment %} 
               <td class="cart__price text-right">
@@ -296,10 +295,7 @@
               
               {% endcomment %}
 
-              <!-- ////////////////////////////////////////////////// -->
-
-
-
+              ////////////////////////////////////////////////// -->
 
 
             </tr>
@@ -309,15 +305,9 @@
 
       <div class="cart__footer">
         <div class="grid">
-          {%- if section.settings.cart_notes_enable -%}
-            <div class="grid__item medium-up--one-half cart-note">
-              <label for="CartSpecialInstructions" class="cart-note__label small--text-center">{{ 'cart.general.note' | t }}</label>
-              <textarea name="note" id="CartSpecialInstructions" class="cart-note__input" data-cart-notes>{{ cart.note }}</textarea>
-            </div>
-          {%- endif -%}
-          <div class="grid__item text-right small--text-center{% if section.settings.cart_notes_enable %} medium-up--one-half{% endif %}">
+          <div class="grid__item">
 
-            {%- assign cartDiscounts = 'template ' | split: ' ' -%}
+            {% comment %} {%- assign cartDiscounts = 'template ' | split: ' ' -%}
             {%- if cart.cart_level_discount_applications.size > 0 -%}
               {%- assign cartDiscounts = cart.cart_level_discount_applications -%}
             {%- endif -%}
@@ -332,11 +322,11 @@
                   </span>
                 {%- endfor -%}
               </div>
-            </div>
+            </div> {% endcomment %}
 
             <div class="cart-subtotal">
-              <span class="cart-subtotal__title">{{ 'cart.general.subtotal' | t }}</span>
-              <span class="cart-subtotal__price" data-cart-subtotal>{{ cart.total_price | money_with_currency }}</span>
+              <span class="cart-subtotal__title mini-text-uppercase">{{ 'cart.general.subtotal' | t }}</span>
+              <span class="cart-subtotal__price" data-cart-subtotal>{{ cart.total_price | money_without_trailing_zeros}}</span>
             </div>
 
             {%- capture taxes_shipping_checkout -%}
@@ -350,17 +340,23 @@
                 {{ 'cart.general.taxes_and_shipping_at_checkout' | t }}
               {%- endif -%}
             {%- endcapture -%}
-            <div class="cart__shipping rte">{{ taxes_shipping_checkout }}</div>
-            <div class="cart__buttons-container">
+
+            <div class="cart__shipping mini-text">{{ taxes_shipping_checkout }}</div>
+
+            <div class="cart__buttons-container"> 
+
               <div class="cart__submit-controls">
-                {%- unless section.settings.cart_ajax_enable -%}
+
+                {% comment %} {%- unless section.settings.cart_ajax_enable -%}
                 <input type="submit" name="update"
                   class="cart__submit btn btn--secondary"
                   value="{{ 'cart.general.update' | t }}">
-                {%- endunless -%}
-                <input type="submit" name="checkout"
-                  class="cart__submit btn btn--small-wide"
-                  value="{{ 'cart.general.checkout' | t }}">
+                {%- endunless -%} {% endcomment %}
+
+                <button style="margin-top: 16px;" type="submit" name="checkout" class="btn" >
+                  {{ 'cart.general.checkout' | t }}
+                </button>
+
               </div>
 
               <div class="cart__error-message-wrapper hide" role="alert" data-cart-error-message-wrapper>
@@ -369,10 +365,11 @@
                 <span class="cart__error-message" data-cart-error-message></span>
               </div>
 
-              {%- if additional_checkout_buttons -%}
+              {% comment %} {%- if additional_checkout_buttons -%}
                 <div class="additional-checkout-buttons">{{ content_for_additional_checkout_buttons }}</div>
-              {%- endif -%}
+              {%- endif -%} {% endcomment %}
             </div>
+
           </div>
         </div>
       </div>
