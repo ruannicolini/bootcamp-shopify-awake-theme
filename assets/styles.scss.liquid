@@ -88,7 +88,7 @@ h4, h5, h6 {
 .h1.heading-uppercase {
     font-size: 24px;
     line-height: 32px;
-    
+
     @media (min-width: 750px) {      
         font-size: 32px;
         line-height: 40px;
@@ -500,6 +500,31 @@ button,
     }
 
 }
+
+// Product Card | Product Grid
+// -----------------------------------------------------------
+
+.product-card {
+    text-align: center;
+}
+
+.grid-view-item__image-wrapper {
+    margin: 0 auto 8px;
+}
+
+.price--listing{
+    align-items: center;
+
+    .price__compare, dd {
+        margin: 0;
+        width: 100%;
+    }
+
+    {% comment %} .price-item {
+        @extend .mini-text;   
+    } {% endcomment %}
+}
+
 
 // Shopping Cart
 // -----------------------------------------------------------
