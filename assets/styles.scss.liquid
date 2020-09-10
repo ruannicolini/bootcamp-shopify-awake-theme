@@ -261,7 +261,6 @@ button,
 
     .badge {
         line-height: 16px;
-        {% comment %} padding: 4px 2px 4px 5px; {% endcomment %}
         padding: 4px 5px;
         min-width: 25px;
         display: inline-block;
@@ -293,21 +292,22 @@ button,
     padding: 8px 20px;
 }
 
+.site-header__icons-wrapper {
+    display: inline;
+}
+
 .site-header__icon {
-    
     padding: 0;
     height: 24px;
-    width:24px; 
-    {% comment %} margin-left: 20px; {% endcomment %}
+    width: 24px;
 
     &.site-header__menu {
-        margin-left: 20px;
+        margin-left: 16px;
     }
 
     &.site-header__cart {
-        margin-left: 15px;
+        margin-left: 16px;
     }
-
 }
 
 .site-header__logo-wrapper {
