@@ -2,33 +2,41 @@
 
 {%- if section.settings.image -%}
 
-    {%- if section.blocks.size > 0 -%}
-      {% assign block_type = section.blocks[0].type %}
+  {%- if section.blocks.size > 0 -%}
+    {% assign block_type = section.blocks[0].type %}
+  {%- endif -%}
+
+  <div class="banner banner--{{ section.settings.banner_size }}
+    banner--{%- if block_type == 'content_block_banner_2' -%} content_top {%- else -%} content_bottom {% endif %}  
+    banner--{%- if block_type == 'content_block_banner_4' -%} content_right {%- else -%} content_center {%- endif -%}"
+  >
+
+    {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}   
+    <img class="lazyload"
+      src="{{ section.settings.image | img_url: '300x300' }}"        
+      data-src="{{ img_url }}"
+      data-widths="[180, 360, 470, 600, 770, 970, 1060, 1280, 1512, 1728, 2048]"
+      data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+      data-sizes="auto"
+      alt="{{ section.settings.image.alt | escape }}"
+    />
+    
+    {%- if block_type != blank -%}
+      <div class="banner--{{block_type}}">
+        {%- case block_type -%}
+          {%- when 'content_block_banner_1' -%}
+            {% include 'banner1', info: section.blocks[0].settings %}            
+          {%- when 'content_block_banner_2' -%}
+            {% include 'banner2', info: section.blocks[0].settings %}            
+          {%- when 'content_block_banner_3' -%}   
+            {% include 'banner3', info: section.blocks[0].settings %}     
+          {%- when 'content_block_banner_4' -%}   
+            {% include 'banner4', info: section.blocks[0].settings %}      
+        {%- endcase -%}
+      </div>
     {%- endif -%}
 
-    <div class="banner banner--{{ section.settings.banner_size }}
-        banner--{%- if block_type == 'content_block_banner_2' -%} content_top {%- else -%} content_bottom {% endif %}  
-        banner--{%- if block_type == 'content_block_banner_4' -%} content_right {%- else -%} content_center {%- endif -%}"
-    >
-
-      <img src="{{section.settings.image | img_url: '300x300'}}" />
-
-      {%- if block_type != blank -%}
-        <div class="banner--{{block_type}}">
-          {%- case block_type -%}
-            {%- when 'content_block_banner_1' -%}
-              {% include 'banner1', info: section.blocks[0].settings %}            
-            {%- when 'content_block_banner_2' -%}
-              {% include 'banner2', info: section.blocks[0].settings %}            
-            {%- when 'content_block_banner_3' -%}   
-              {% include 'banner3', info: section.blocks[0].settings %}     
-            {%- when 'content_block_banner_4' -%}   
-              {% include 'banner4', info: section.blocks[0].settings %}      
-          {%- endcase -%}
-        </div>
-      {%- endif -%}
-
-    </div> 
+  </div> 
    
 {%- endif -%}
 
