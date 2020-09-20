@@ -464,6 +464,28 @@ button,
     }
 }
 
+
+// Collections
+// -----------------------------------------------------------
+
+.collection-hero__title-wrapper {
+
+    h1 {
+        margin-bottom: 24px;
+    }
+
+}
+
+.collection-description {
+    text-align: center; 
+}
+
+.filters-toolbar__item {
+    &.filters-toolbar__item--count {
+        display: none;
+    }  
+}
+
 {% comment %} //////////////////////// {% endcomment %}
 
 // Banner Img
@@ -561,6 +583,12 @@ button,
 
 .grid-view-item__image-wrapper {
     margin: 0 auto 8px;
+    max-width: 100% !important;
+}
+
+.grid-view-item__image {
+    max-width: 100% !important;
+    max-height: none !important;
 }
 
 .price--listing{
@@ -688,3 +716,4 @@ button,
     display: flex;
     align-items: center;    
 }
+

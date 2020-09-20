@@ -6,7 +6,9 @@
     {% assign block_type = section.blocks[0].type %}
   {%- endif -%}
 
-  <div class="banner banner--{{ section.settings.banner_size }}
+  <div 
+    style="padding-top:{{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100}}%;"
+    class="banner banner--{{ section.settings.banner_size }}
     banner--{%- if block_type == 'content_block_banner_2' -%} content_top {%- else -%} content_bottom {% endif %}  
     banner--{%- if block_type == 'content_block_banner_4' -%} content_right {%- else -%} content_center {%- endif -%}"
   >
