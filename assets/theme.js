@@ -2655,16 +2655,26 @@ theme.MobileNav = (function () {
 
     cache.$mobileNavContainer.prepareTransition().addClass(classes.navOpen);
 
-    cache.$mobileNavContainer.css({
-      transform: "translateY(" + translateHeaderHeight + "px)",
-    });
+    if (isMobileSlideEnabled()) {
+      cache.$mobileNavContainer.css({
+        transform: "translateX(0)",
+      });
 
-    cache.$pageContainer.css({
-      transform:
-        "translate3d(0, " +
-        cache.$mobileNavContainer[0].scrollHeight +
-        "px, 0)",
-    });
+      cache.$pageContainer.css({
+        transform: "translate3d(0, 0, 0)",
+      });
+    } else {
+      cache.$mobileNavContainer.css({
+        transform: "translateY(" + translateHeaderHeight + "px)",
+      });
+
+      cache.$pageContainer.css({
+        transform:
+          "translate3d(0, " +
+          cache.$mobileNavContainer[0].scrollHeight +
+          "px, 0)",
+      });
+    }
 
     slate.a11y.trapFocus({
       $container: cache.$sectionHeader,
@@ -2688,9 +2698,15 @@ theme.MobileNav = (function () {
   function closeMobileNav() {
     cache.$mobileNavContainer.prepareTransition().removeClass(classes.navOpen);
 
-    cache.$mobileNavContainer.css({
-      transform: "translateY(-100%)",
-    });
+    if (isMobileSlideEnabled()) {
+      cache.$mobileNavContainer.css({
+        transform: "translateX(100%)",
+      });
+    } else {
+      cache.$mobileNavContainer.css({
+        transform: "translateY(-100%)",
+      });
+    }
 
     cache.$pageContainer.removeAttr("style");
 
@@ -2718,6 +2734,10 @@ theme.MobileNav = (function () {
     $(window).off("keyup.mobileNav");
 
     scrollTo(0, 0);
+  }
+
+  function isMobileSlideEnabled() {
+    return cache.$mobileNavContainer.hasClass("mobile-nav-slide");
   }
 
   function toggleSubNav(evt) {
