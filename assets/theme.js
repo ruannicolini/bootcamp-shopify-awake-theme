@@ -2687,6 +2687,8 @@ theme.MobileNav = (function () {
       .removeClass(classes.mobileNavOpenIcon)
       .attr("aria-expanded", true);
 
+    $("body").addClass("menu-open");
+
     // close on escape
     $(window).on("keyup.mobileNav", function (evt) {
       if (evt.which === 27) {
@@ -2731,9 +2733,11 @@ theme.MobileNav = (function () {
       .attr("aria-expanded", false)
       .focus();
 
+    $("body").removeClass("menu-open");
+
     $(window).off("keyup.mobileNav");
 
-    scrollTo(0, 0);
+    if (!isMobileSlideEnabled()) scrollTo(0, 0);
   }
 
   function isMobileSlideEnabled() {
@@ -2747,7 +2751,13 @@ theme.MobileNav = (function () {
 
     var $toggleBtn = $(evt.currentTarget);
     var isReturn = $toggleBtn.hasClass(classes.return);
-    isTransitioning = true;
+
+    if (!isMobileSlideEnabled()) {
+      isTransitioning = true;
+    }
+
+    console.log("isReturn:", isReturn);
+    console.log("toggleBtn:", $toggleBtn);
 
     if (isReturn) {
       // Close all subnavs by removing active class on buttons
@@ -2758,8 +2768,12 @@ theme.MobileNav = (function () {
       if ($activeTrigger && $activeTrigger.length) {
         $activeTrigger.removeClass(classes.subNavActive);
       }
+
+      //$toggleBtn.removeClass(classes.return);
     } else {
       $toggleBtn.addClass(classes.subNavActive);
+
+      //$toggleBtn.addClass(classes.return);
     }
 
     $activeTrigger = $toggleBtn;

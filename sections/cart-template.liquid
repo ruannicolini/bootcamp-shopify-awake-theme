@@ -1,12 +1,13 @@
 <div class="site-shopping-cart page-width" data-section-id="{{ section.id }}" data-section-type="cart-template" data-ajax-enabled="{{ section.settings.cart_ajax_enable }}">
 
   <div {% if cart.item_count == 0 %}class="hide" {% endif %}data-cart-wrapper>
+
     <div class="cart-header">
-      <h1 class="cart-header__title heading-uppercase">{{ 'cart.general.title' | t }}</h1>
+      <h1 class="cart-header__title h1 heading-uppercase">{{ 'cart.general.title' | t }}</h1>
     </div>
 
     <form action="{{ routes.cart_url }}" method="post" novalidate class="cart">
-      <table>
+      {% comment %} <table>
         <tbody data-cart-line-items>
           {%- for item in cart.items -%}
             <tr class="cart__row" data-cart-item data-cart-item-key="{{ item.key }}" data-cart-item-url="{{ item.url }}" data-cart-item-title="{{ item.title }}" data-cart-item-index="{{ forloop.index }}" data-cart-item-quantity="{{ item.quantity }}">
@@ -301,7 +302,45 @@
             </tr>
           {%- endfor -%}
         </tbody>
+      </table> {% endcomment %}
+
+      <table>
+        <tbody data-cart-line-items>
+          {%- for item in cart.items -%}
+            <tr class="cart__row" data-cart-item data-cart-item-key="{{ item.key }}" data-cart-item-url="{{ item.url }}" data-cart-item-title="{{ item.title }}" data-cart-item-index="{{ forloop.index }}" data-cart-item-quantity="{{ item.quantity }}">
+
+              <td class="cart__meta small--text-left" data-cart-table-cell>           
+                <div class="cart__product-information">
+                  <div class="cart__image-wrapper">
+                    <img class="cart__image{% if item.image == null %} hide{% endif %}" src="{{ item | img_url: 'x190' }}" alt="{{ item.image.alt | escape }}" data-cart-item-image>
+                  </div>
+                  <div class="cart__info-item">
+                    <div class="list-view-item__title">
+                      <a href="{{ item.url }}" class="cart__product-title" data-cart-item-title>
+                        <h4>{{ item.product.title }}</h4>            
+                      </a>
+                    </div>
+                    {% include 'input-qty', info_qtd: item.quantity, item: item  %}
+                  </div>
+                </div>
+              </td>
+
+              <td class="cart__final-price text-right" data-cart-item-line-price>
+                <div>
+                  <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
+                    {% include 'icon-close' %}
+                  </a>
+                  <div {% if item.original_line_price != item.final_line_price %}class="hide" {% endif %}data-cart-item-regular-price-group>
+                    <span data-cart-item-regular-price>{{ item.original_line_price | money_without_trailing_zeros }}</span>
+                  </div>
+                </div>   
+              </td>
+
+            </tr>
+          {%- endfor -%}
+        </tbody>
       </table>
+      
 
       <div class="cart__footer">
         <div class="grid">
@@ -379,6 +418,7 @@
       aria-live="polite"
       role="status"
     ></p>
+
   </div>
 
   <div class="empty-page-content{% if cart.item_count > 0 %} hide{% endif %} text-center" data-empty-page-content>
