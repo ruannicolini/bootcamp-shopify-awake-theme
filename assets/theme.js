@@ -5374,6 +5374,17 @@ theme.customerTemplates = (function () {
   };
 })();
 
+theme.updateQty = function(element, action) {
+
+  var $input = $(element.getAttribute('data-qty-input-id').replace(':','\\:'));
+
+  if (action == 'plus')
+    $input.val( parseInt($input.val()) + 1).trigger('change');
+
+  if (action == 'minus' && $input.val() > 0)
+    $input.val( $input.val() - 1).trigger('change');
+}
+
 /*================ SECTIONS ================*/
 window.theme = window.theme || {};
 
@@ -5837,14 +5848,20 @@ theme.Cart = (function () {
 
     _setQuantityInputs: function ($item, item, index) {
       $(selectors.quantityInputMobile, $item)
-        .attr("id", "updates_" + item.key)
+        .attr('id', 'updates_' + item.key)
         .attr(attributes.quantityItem, index + 1)
-        .val(item.quantity);
+        .val(item.quantity)
+        .parent()
+        .find('[data-qty-input-id]')
+        .attr('data-qty-input-id', '#updates_' + item.key);
 
       $(selectors.quantityInputDesktop, $item)
-        .attr("id", "updates_large_" + item.key)
+        .attr('id', 'updates_large_' + item.key)
         .attr(attributes.quantityItem, index + 1)
-        .val(item.quantity);
+        .val(item.quantity)
+        .parent()
+        .find('[data-qty-input-id]')
+        .attr('data-qty-input-id', '#updates_' + item.key);
 
       $(selectors.quantityLabelMobile, $item).attr(
         "for",

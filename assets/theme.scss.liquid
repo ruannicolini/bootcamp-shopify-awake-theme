@@ -2186,7 +2186,6 @@ select {
   color: $color-text-field-text;
   max-width: 100%;
   line-height: 1.2;
-  border-radius: $border-radius;
 
   &:focus {
     border-color: darken($color-border-form, 10%);
@@ -4348,6 +4347,34 @@ $color-blankstate-background: rgba($color-body-text, 0.1);
     padding-left: $gutter-site;
     min-width: 150px;
     display: inline-block;
+  }
+}
+
+.cart__footer {
+  padding-top: $section-spacing-small / 2;
+}
+
+.cart__buttons-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 20rem;
+  margin: 0 auto;
+
+  @include media-query ($medium-up) {
+    display: block;
+    max-width: none;
+  }
+}
+
+.cart__submit-controls {
+  @include display-flexbox();
+  @include flex-direction(column);
+
+  @include media-query($medium-up) {
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    @include align-items(flex-start);
+    @include justify-content(flex-end);
   }
 }
 
