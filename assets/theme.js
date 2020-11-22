@@ -681,14 +681,21 @@ slate.Variants = (function () {
     this.$container = options.$container;
     this.product = options.product;
     this.singleOptionSelector = options.singleOptionSelector;
+    this.optionSwatchSelector = options.optionSwatchSelector;
     this.originalSelectorId = options.originalSelectorId;
     this.enableHistoryState = options.enableHistoryState;
     this.currentVariant = this._getVariantFromOptions();
 
+    $(this.optionSwatchSelector).on('click', function() {
+      $swatch = $(this);
+      $($swatch.attr('data-option-selector')).val($swatch.attr('data-option-value')).trigger('change');
+    });
+
     $(this.singleOptionSelector, this.$container).on(
-      "change",
+      'change',
       this._onSelectChange.bind(this)
     );
+    
   }
 
   Variants.prototype = Object.assign({}, Variants.prototype, {
@@ -6571,6 +6578,7 @@ theme.Product = (function () {
       productThumbsWrapper: ".thumbnails-wrapper",
       saleLabel: ".product-price__sale-label-" + sectionId,
       singleOptionSelector: ".single-option-selector-" + sectionId,
+      optionSwatchSelector: '[data-option-swatch]',
       shopifyPaymentButton: ".shopify-payment-button",
       productMediaTypeVideo: "[data-product-media-type-video]",
       productMediaTypeModel: "[data-product-media-type-model]",
@@ -6700,6 +6708,7 @@ theme.Product = (function () {
         enableHistoryState:
           this.$container.data("enable-history-state") || false,
         singleOptionSelector: this.selectors.singleOptionSelector,
+        optionSwatchSelector: this.selectors.optionSwatchSelector,
         originalSelectorId: this.selectors.originalSelectorId,
         product: this.productSingleObject,
       };
