@@ -1,6 +1,12 @@
 // Variables
 //----------------------------------------
 
+//breakpoints
+$width-site: 1200px;
+$grid-medium: 750px;
+$grid-large: 990px;
+$grid-widescreen: 1400px;
+
 //colors
 $color-border: #CCCCCC;
 $color-black: #000;
@@ -15,6 +21,7 @@ $color-body: {{ settings.color_body_bg }};
 
 // Header
 $header-mobile-hight: 56px;
+$header-desktop-hight: 88px;
 
 // Fonts
 //----------------------------------------
@@ -362,6 +369,14 @@ select {
         height: 40px;
     }
 
+    @media screen and (min-width:$grid-large) {
+        width: 160px !important;
+        img{
+            height: 56px;
+            max-width: 160px !important;
+        }
+    }
+
 }
 
 .site-header {
@@ -371,6 +386,17 @@ select {
     z-index: 999;
     background: $color-body; 
     padding: 8px 20px;
+
+    @media screen and (min-width: $grid-large) {
+        height: $header-desktop-hight;
+        padding-top: 16px;
+        padding-bottom: 16px;
+
+        .site-header__mobile-nav {
+            max-width: $width-site;
+            margin: auto;
+        }
+    }
 }
 
 .site-header__icons-wrapper {
@@ -389,6 +415,12 @@ select {
     &.site-header__cart {
         margin-left: 16px;
     }
+
+    @media screen and (min-width:$grid-medium) {
+        &.site-header__menu {
+            display:none;
+        }
+    }
 }
 
 .site-header__logo-wrapper {
@@ -398,6 +430,54 @@ select {
 .site-header__logo {
     margin: 0;
 }
+
+.site-nav { 
+    position: absolute;
+    padding: 0;
+    text-align: left;
+    margin: 0;
+    top: 0;
+    left: 130px;
+    width: calc(100% - 260px); 
+    z-index: 1;
+    text-transform: uppercase;
+    display: flex;
+    flex-wrap: wrap;   
+
+    > li {
+        margin: 0 20px 0 0;
+    }
+
+    @media screen and (min-width:$grid-large) {
+        width: calc(100% - 330px);
+        left: 216px;
+     }
+
+    .site-nav__link {
+        font-size: 12px;
+        line-height: 40px; 
+
+        @media screen and (min-width:$grid-large) {
+           font-size: 16px;
+           line-height: 56px; 
+        }
+    }
+
+    .site-nav__link--button {
+        padding: 0;
+        margin: 0;
+        height: auto;  
+        line-height: 40px; 
+        font-size: 12px;
+        color: $color-black;
+
+        @media screen and (min-width:$grid-large) {
+            font-size: 16px;
+            line-height: 56px; 
+         }
+    }
+}
+
 
 // Search Bar
 // -----------------------------------------------------------
