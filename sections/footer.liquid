@@ -213,6 +213,13 @@
                 </a>
               {% endif %}
 
+              {%- if block.settings.text != blank -%}
+                <div class="site-footer__rte
+                            {% if section.blocks.size == 1 %} site-footer__single-block--centered{% endif %}">
+                    {{ block.settings.text }}
+                </div>
+              {%- endif -%}
+
                             
               {%- when 'link_list' -%}
                 {%- assign footer_linklist = block.settings.menu -%}
@@ -258,7 +265,7 @@
                       </li>
                     {%- endfor -%}
 
-                    <li class="site-footer__linklist-item">{% include 'custumer-login-link' %}</li>
+                    <li class="site-footer__linklist-item account-item">{% include 'custumer-login-link' %}</li>
                   </ul>
 
             
@@ -984,6 +991,14 @@
           "label": {
             "en": "Image",
             "pt-BR": "Imagem"
+          }
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": {
+            "en": "Text",
+            "pt-BR": "Texto"
           }
         }
       ]
