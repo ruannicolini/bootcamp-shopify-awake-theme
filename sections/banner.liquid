@@ -7,13 +7,12 @@
   {%- endif -%}
 
   <div 
-    style="padding-top:{{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100}}%;"
     class="banner banner--{{ section.settings.banner_size }}
     banner--{%- if block_type == 'content_block_banner_2' -%} content_top {%- else -%} content_bottom {% endif %}  
     banner--{%- if block_type == 'content_block_banner_4' -%} content_right {%- else -%} content_center {%- endif -%}"
   >
 
-    {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}   
+    {% comment %} {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}   
     <img class="lazyload"
       src="{{ section.settings.image | img_url: '300x300' }}"        
       data-src="{{ img_url }}"
@@ -21,7 +20,14 @@
       data-aspectratio="{{ section.settings.image.aspect_ratio }}"
       data-sizes="auto"
       alt="{{ section.settings.image.alt | escape }}"
-    />
+    />  {% endcomment %}
+
+    {%- assign mobile_image = section.settings.image | img_url: '1600x' -%}
+    {%- assign alt_image = section.settings.image.alt | escape -%}
+    {%- assign desktop_image = section.settings.image_desktop | img_url: '3000x' -%}  
+    {%- assign small_image = section.settings.image_desktop | img_url: '500x' -%}
+
+    {% render 'responsive-image', small_image: small_image, mobile_image: mobile_image, desktop_image: desktop_image, alt: alt_image %}
     
     {%- if block_type != blank -%}
       <div class="banner--{{block_type}}">
@@ -55,6 +61,14 @@
       "label": {
         "en": "Image",
         "pt-BR": "Imagem"
+      }
+    },
+    {
+      "id": "image_desktop",  
+      "type": "image_picker",  
+      "label": {
+        "en": "Desktop Image",
+        "pt-BR": "Imagem Desktop"
       }
     },  
     {      
