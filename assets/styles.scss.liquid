@@ -1091,7 +1091,8 @@ select {
 }
 
 .sec-content-text{
-    margin: 32px 20px;
+    margin: 32px auto;
+    max-width: 335px;
     
     h1 {
         margin-bottom: 23px;
@@ -1101,6 +1102,82 @@ select {
       margin-top: 8px;    
     }
 
+}
+
+@media screen and (min-width: $grid-medium) {
+
+    .banner {
+
+        .banner--section--content_block_banner_1 &.banner--content_bottom.banner--content_center {
+            max-width: $width-site;
+            margin: auto; 
+        }       
+
+        &.banner--content_right {
+            justify-content: center;
+            .banner--content_block_banner_4 {
+                max-width: $width-site;
+            }
+        }
+
+    }
+
+}
+
+// Index page
+// -----------------------------------------------------------
+
+.template-index {
+
+    @media screen and (min-width: $grid-medium) {
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            > div {
+                grid-column-start: 1;
+                grid-column-end: 3;
+
+                &.banner--section--content_block_banner_3 {
+                    max-width: calc(#{$width-site} / 2);
+                    margin: auto;
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: $grid-large) {
+
+        .main-content {
+
+            > div {
+
+                &.banner--section--content_block_banner_3 {
+                    grid-column-start: 1;
+                    grid-column-end: 2;
+                    display: flex;
+                    justify-content: flex-end;
+                    max-width: 100%;
+                    margin: 0;
+
+                    
+                    .banner.banner--content_bottom.banner--content_center {
+                        max-width: calc(#{$width-site} / 2);
+                    } 
+
+                    + div {
+                        grid-column-start: 2;
+                        grid-column-end: 3;
+                        max-width: calc(#{$width-site} / 2);
+                        display: flex;
+                        align-items: center;
+                        background: red;
+                    }
+                }
+            }
+        }
+    }
 }
 
 // Product Card | Product Grid
