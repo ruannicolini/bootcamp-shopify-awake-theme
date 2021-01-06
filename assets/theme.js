@@ -4843,11 +4843,13 @@ theme.SearchDrawer = (function () {
         setHeight();
         theme.MobileNav.closeMobileNav();
         lockBodyScroll();
+        $('body').addClass('search-header-active');
       },
       onDrawerClose: function () {
         theme.SearchHeader.clearAndClose();
         $(selectors.drawerOpenButton).focus();
         unlockBodyScroll();
+        $('body').removeClass('search-header-active');
       },
       withPredictiveSearch: true,
       $elementToFocusOnOpen: $(selectors.headerSearchInput),
@@ -4864,7 +4866,7 @@ theme.SearchDrawer = (function () {
   function setHeight() {
     $(selectors.drawer).css({
       // height: $(selectors.headerSection).outerHeight(),
-      height: "56",
+      height: "88",
     });
   }
 
