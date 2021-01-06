@@ -448,10 +448,76 @@ select {
         margin: 0 20px 0 0;
     }
 
-    @media screen and (min-width:$grid-large) {
-        width: calc(100% - 330px);
-        left: 216px;
-     }
+    @media screen and (min-width: $grid-medium) {
+
+        > li {
+            position: relative;
+        }
+
+        .site-nav__childlist {
+            display: block;
+            padding: 16px 25px;
+        }
+
+        .site-nav__childlist-grid {
+            flex-wrap: nowrap;
+            margin: 0;
+        }
+
+        .site-nav__dropdown {
+            border: 0;
+        }
+
+        .site-nav--active-dropdown {
+
+            .site-nav__dropdown {
+                top: 48px !important;
+                left: -25px;
+                width: auto;
+            }
+        }
+
+        .site-nav__childlist-item {
+            margin: 0 20px;
+
+            &:first-of-type {
+                margin-left: 0;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        .site-nav__link.site-nav__child-link {
+            font-size: 14px;
+            line-height: 40px;
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+   @media screen and (min-width: $grid-large) {
+    left: 216px;
+    width: calc(100% - 300px);
+
+    > li {
+        margin: 0 50px 0 0;
+    }
+
+    .site-nav--active-dropdown {
+
+        .site-nav__dropdown {
+            top: 72px !important;
+            left: -30px;
+        }
+    }
+
+    .site-nav__link.site-nav__child-link {
+        font-size: 14px;
+        line-height: 40px;
+    }
+  }
 
     .site-nav__link {
         font-size: 12px;
@@ -471,10 +537,14 @@ select {
         font-size: 12px;
         color: $color-black;
 
+        &:focus { 
+            background: transparent;
+        }
+
         @media screen and (min-width:$grid-large) {
             font-size: 16px;
             line-height: 56px; 
-         }
+        }
     }
 }
 
@@ -1172,7 +1242,6 @@ select {
                         max-width: calc(#{$width-site} / 2);
                         display: flex;
                         align-items: center;
-                        background: red;
                     }
                 }
             }
